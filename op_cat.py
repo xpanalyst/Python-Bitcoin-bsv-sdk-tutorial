@@ -9,19 +9,11 @@ import hashlib
 import requests
 import json
 
-#moj_klucz_1 = "L3LaQ7qvruqKcfteY7Yi6gARYV5FTtRep2wHcKdwAqSUpBoeFDn7"
-#klucz_prywatny_1 = PrivateKey(moj_klucz_1)
-#address_testnet_1 = klucz_prywatny_1.address(network = "testnet")
-#print(address_testnet_1) n4MuQhDnpmdajnGFj4t8SLjBLpDDJKt7Td
-moj_klucz = "KwVs88aLx6ZuZmphr5zCmHiF3e1eaJzwZkEWMvY3s49bTFdMwrRP"
+
+moj_klucz = "KwVs88aLx6............"
 klucz_prywatny = PrivateKey(moj_klucz)
 address_testnet = klucz_prywatny.address(network = "testnet")
 
-# DANE GRY
-serial_number = b"GB-HOLO-0042-1992"
-game_secret = b"GameBoyAuth42"
-combined_key = serial_number + game_secret
-expected_hash_hex = hashlib.sha256(combined_key).hexdigest()  # małe litery!
 
 url = f"https://api.whatsonchain.com/v1/bsv/test/address/{address_testnet}/confirmed/balance"
 response = requests.get(url)
@@ -47,8 +39,6 @@ tx_hex = response.text
 print(f"HEX : {tx_hex}\n")
 
 do_wyslania = 1111
-#odbiorca = 'mnai8LzKea5e3C9qgrBo7JHgpiEnHKMhwR'
-odbiorca = "n4MuQhDnpmdajnGFj4t8SLjBLpDDJKt7Td" # ja
 
 def locking_script():
     chunks = [
@@ -60,6 +50,7 @@ def locking_script():
     return Script(b''.join(chunks))
 
 input("Wyślij//")
+
 async def create_and_broadcast_nft():
     
     
@@ -70,7 +61,6 @@ async def create_and_broadcast_nft():
         satoshis=do_wyslania
     )
     
-    # Change do Ciebie
     change_output = TransactionOutput(
         locking_script=P2PKH().lock(address_testnet),
         change=True
@@ -87,7 +77,7 @@ async def create_and_broadcast_nft():
 
     tx.fee()
     tx.sign()
-    api_key = 'testnet_2d8a5a0745f728500a31a06271dea16d'
+    api_key = 'testnet_2d...............'
     response = await tx.broadcast(ARC('https://api.taal.com/arc', api_key))
     print(f"Status rozgłoszenia: {response.status}")
     print(f"ID transakcji: {tx.txid()}")
@@ -95,5 +85,3 @@ async def create_and_broadcast_nft():
     
 if __name__ == "__main__":
     asyncio.run(create_and_broadcast_nft())
-
-input()
