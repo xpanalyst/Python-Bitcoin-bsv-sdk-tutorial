@@ -5,7 +5,6 @@ from pathlib import Path
 from bsv import PrivateKey, P2PKH, ARC, Transaction, TransactionInput, TransactionOutput, Script
 from bsv.constants import OpCode
 from bsv.utils import encode_pushdata
-import hashlib
 import requests
 import json
 
@@ -85,3 +84,4 @@ async def create_and_broadcast_nft():
     
 if __name__ == "__main__":
     asyncio.run(create_and_broadcast_nft())
+
